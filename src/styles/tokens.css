@@ -1,0 +1,44 @@
+/* Design tokens — the editorial foundation.
+   The site must look sophisticated with every animation paused, so the palette,
+   type scale and rhythm are defined here independent of any motion. */
+
+:root {
+  /* Ivory / off-white paper palette */
+  --paper: #f4f1ea;
+  --paper-2: #ece7dc;
+  --ink: #141210;
+  --ink-2: #4a463f;
+  --ink-3: #8a8479;
+  --line: #d9d3c6;
+  --accent: #c8502d; /* warm terracotta, used sparingly */
+  --wa: #25d366; /* WhatsApp green, used only on chat actions */
+  --wa-ink: #075e54;
+
+  /* Height of the fixed promo bar; sections offset by this so nothing hides. */
+  --promobar-h: 2.4rem;
+
+  /* Typography */
+  --font-display: "Times New Roman", Georgia, "Playfair Display", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  --font-mono: "SFMono-Regular", ui-monospace, "Roboto Mono", monospace;
+
+  /* Fluid type scale */
+  --step--1: clamp(0.78rem, 0.72rem + 0.3vw, 0.9rem);
+  --step-0: clamp(1rem, 0.94rem + 0.3vw, 1.15rem);
+  --step-1: clamp(1.4rem, 1.2rem + 1vw, 2rem);
+  --step-2: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --step-hero: clamp(4rem, 2rem + 18vw, 20rem);
+
+  /* Spacing & layout */
+  --gutter: clamp(1.25rem, 0.8rem + 3vw, 4rem);
+  --section-pad: clamp(4rem, 3rem + 8vw, 12rem);
+  --maxw: 1600px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --z-canvas: 5;
+  --z-content: 10;
+  --z-cursor: 9999;
+}

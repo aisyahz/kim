@@ -1,0 +1,166 @@
+/* Shared demo base: minimal reset + the KIM sales chrome ONLY.
+   Deliberately contains no brand identity — each demo supplies its own palette,
+   type and layout so the demos look like different real client sites. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  min-height: 100svh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Lazy image fade-in */
+img[data-src] {
+  opacity: 0;
+}
+img.is-loaded {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+/* Scroll-reveal utility (opt-in via [data-reveal]) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  img.is-loaded {
+    transition: none;
+  }
+}
+
+/* ---------------- KIM sales chrome ---------------- */
+
+/* DEMO BY KIM badge — subtle, fixed, high contrast on any design. */
+.kim-badge {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 0.85em;
+  border-radius: 999px;
+  background: rgba(20, 18, 16, 0.82);
+  color: #fff;
+  font-family: ui-monospace, "SFMono-Regular", "Roboto Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.kim-badge:hover {
+  transform: translateY(-1px);
+  background: rgba(20, 18, 16, 0.95);
+}
+.kim-badge strong {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.kim-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #25d366;
+}
+
+/* Floating "want a website like this?" WhatsApp CTA. */
+.kim-cta {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.75em 1.1em;
+  border-radius: 999px;
+  background: #25d366;
+  color: #06331f;
+  box-shadow: 0 18px 36px -14px rgba(37, 211, 102, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.kim-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 22px 44px -16px rgba(37, 211, 102, 0.85);
+}
+.kim-cta__icon {
+  width: 1.5em;
+  height: 1.5em;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2m0 18.15c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.24-8.24 8.24m4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29'/%3E%3C/svg%3E");
+  mask: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2m0 18.15c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.24-8.24 8.24m4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29'/%3E%3C/svg%3E");
+}
+.kim-cta__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  font-family: ui-monospace, "SFMono-Regular", "Roboto Mono", monospace;
+}
+.kim-cta__text b {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.kim-cta__text span {
+  font-size: 0.66rem;
+  opacity: 0.85;
+}
+
+/* Mobile: collapse the CTA text to keep it thumb-sized. */
+@media (max-width: 600px) {
+  .kim-cta__text b {
+    font-size: 0.64rem;
+  }
+  .kim-cta__text span {
+    display: none;
+  }
+  .kim-badge {
+    font-size: 0.6rem;
+    padding: 0.45em 0.7em;
+  }
+}
+
+/* Shared scroll-reveal helper class hook used by demos. */

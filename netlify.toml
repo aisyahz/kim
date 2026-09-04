@@ -1,0 +1,24 @@
+# Netlify deploy config for Kim.
+# Netlify auto-detects Vite, but pinning it here makes the build reproducible
+# and lets you deploy straight from a connected GitHub repo with no dashboard
+# tweaking.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single-page site: send any unknown path back to index.html so deep links and
+# refreshes don't 404. (Harmless even though Kim is currently one page.)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Long-cache the fingerprinted assets Vite emits under /assets.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

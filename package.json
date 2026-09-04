@@ -1,0 +1,23 @@
+{
+  "name": "kim",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "KIM® — an editorial portfolio built around visual illusion and spatial storytelling.",
+  "engines": {
+    "node": ">=18 <23"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.9"
+  }
+}
