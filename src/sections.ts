@@ -5,15 +5,16 @@
  * is layered on top.
  */
 
-import { waLink } from "./shared/whatsapp";
+import { WA_LINKS } from "./shared/whatsapp";
 
-/** Prefilled enquiry used across the KIM homepage CTAs. */
-export const WHATSAPP_LINK = waLink(
-  "Hi KIM! I'd like to claim the FREE website demo and secure a 2026 slot. Here's my business:"
-);
+/**
+ * Primary homepage CTA now carries the unified campaign message so every
+ * top-level "chat with Kim" action self-identifies as a portfolio-project lead.
+ */
+export const WHATSAPP_LINK = WA_LINKS.campaign;
 
 export const sectionsHTML = /* html */ `
-  <!-- Promo bar: free demo offer, tap-through to WhatsApp. -->
+  <!-- Promo bar: portfolio-project campaign, tap-through to WhatsApp. -->
   <a
     class="promobar"
     href="${WHATSAPP_LINK}"
@@ -22,8 +23,8 @@ export const sectionsHTML = /* html */ `
     data-cursor="CLAIM"
   >
     <span class="promobar__marquee">
-      <span>✦ FREE website demo — no upfront cost &nbsp;·&nbsp; Limited 2026 slots &nbsp;·&nbsp; Chat on WhatsApp to secure yours &nbsp;·&nbsp; Made in Malaysia 🇲🇾 &nbsp;·&nbsp;</span>
-      <span aria-hidden="true">✦ FREE website demo — no upfront cost &nbsp;·&nbsp; Limited 2026 slots &nbsp;·&nbsp; Chat on WhatsApp to secure yours &nbsp;·&nbsp; Made in Malaysia 🇲🇾 &nbsp;·&nbsp;</span>
+      <span>✦ Portfolio project &nbsp;·&nbsp; 3 selected Malaysian businesses &nbsp;·&nbsp; Website build at no design cost, in exchange for a testimonial &nbsp;·&nbsp; Chat on WhatsApp &nbsp;·&nbsp; Made in Malaysia 🇲🇾 &nbsp;·&nbsp;</span>
+      <span aria-hidden="true">✦ Portfolio project &nbsp;·&nbsp; 3 selected Malaysian businesses &nbsp;·&nbsp; Website build at no design cost, in exchange for a testimonial &nbsp;·&nbsp; Chat on WhatsApp &nbsp;·&nbsp; Made in Malaysia 🇲🇾 &nbsp;·&nbsp;</span>
     </span>
   </a>
 
@@ -42,7 +43,8 @@ export const sectionsHTML = /* html */ `
     <nav class="site-nav__links">
       <a href="#work" data-cursor="VIEW">Work</a>
       <a href="#services" data-cursor="VIEW">Services</a>
-      <a href="#offer" data-cursor="FREE">About</a>
+      <a href="#pricing" data-cursor="VIEW">Pricing</a>
+      <a href="#offer" data-cursor="FREE">Project</a>
       <a href="#contact" data-cursor="SAY HI">Contact</a>
       <span class="site-nav__sep" aria-hidden="true"></span>
       <a class="btn btn--pill site-nav__cta" href="${WHATSAPP_LINK}" target="_blank" rel="noopener" data-cursor="CHAT">
@@ -93,58 +95,41 @@ export const sectionsHTML = /* html */ `
 
           <!-- floating idea card -->
           <div class="hero__card" data-hero-float="1.4">
-            <img
-              class="hero__card-img"
-              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=320&q=70&sat=-100"
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
+            <span class="hero__card-swatch"></span>
             <div class="hero__card-text">
               <span>Ideas</span><span>Code</span><span>Design</span><span>Impact</span>
             </div>
             <em class="hero__card-k">(K)</em>
           </div>
 
-          <!-- laptop with real website mockup -->
+          <!-- laptop showing a simplified but believable premium site -->
           <div class="hero__laptop" data-hero-float="0.9">
             <div class="hero__laptop-screen">
               <div class="mock">
                 <div class="mock__bar">
-                  <em>S.</em>
-                  <span class="mock__nav">Home &nbsp; About &nbsp; Services &nbsp; Contact</span>
-                  <span class="mock__menu">≡</span>
+                  <em>Studio.</em>
+                  <span class="mock__nav">Work · Studio · Contact</span>
                 </div>
-                <div class="mock__body">
-                  <div class="mock__copy">
-                    <h3 class="display">Modern Solutions for Growing Brands</h3>
-                    <p>We help businesses build digital experiences that drive real results.</p>
-                    <span class="mock__cta">Get Started</span>
-                    <span class="mock__link">Our Work →</span>
+                <div class="mock__hero">
+                  <div class="mock__overlay">
+                    <h3 class="display">Modern brands,<br />built with care.</h3>
+                    <span class="mock__cta">Start a project →</span>
                   </div>
-                  <img
-                    class="mock__img"
-                    src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=520&q=72&sat=-100"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <div class="mock__hero-art"><span></span><span></span></div>
                 </div>
               </div>
             </div>
             <div class="hero__laptop-base"></div>
           </div>
 
-          <!-- phone with real mockup -->
+          <!-- phone showing a coded app screen -->
           <div class="hero__phone" data-hero-float="1.8">
-            <img
-              class="hero__phone-img"
-              src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=300&q=72&sat=-100"
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="hero__phone-cap display">Small Ideas Big Results.</div>
+            <div class="hero__phone-screen">
+              <span class="hero__phone-status"><i></i><i></i></span>
+              <span class="hero__phone-tag">Studio</span>
+              <p class="hero__phone-cap display">Small ideas,<br />big results.</p>
+              <span class="hero__phone-btn">Get started</span>
+            </div>
           </div>
 
           <!-- rotating circular badge -->
@@ -191,14 +176,35 @@ export const sectionsHTML = /* html */ `
         <span class="display intro__bg" data-depth-layer="back">BUILD</span>
         <div class="intro__media" data-depth-layer="mid">
           <div class="frame" data-tilt>
-            <div class="frame__screen frame__screen--a">
-              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=620&q=72&sat=-100" alt="" loading="lazy" decoding="async" />
+            <div class="frame__screen">
+              <div class="site site--intro">
+                <nav class="site__nav">
+                  <span class="site__logo">Nova</span>
+                  <span class="site__links"><i></i><i></i><i></i></span>
+                  <span class="site__navcta">Contact</span>
+                </nav>
+                <div class="site__hero">
+                  <div class="site__hero-copy">
+                    <p class="site__eyebrow">Studio · 2026</p>
+                    <h4 class="site__h1">Design that works harder.</h4>
+                    <span class="site__btn">See our work</span>
+                  </div>
+                  <div class="site__hero-art"><span></span><span></span></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <span class="display intro__fg" data-depth-layer="front">DIFFERENT</span>
         <div class="intro__device" data-depth-layer="pop">
-          <div class="phone"><div class="phone__screen"></div></div>
+          <div class="phone">
+            <div class="phone__screen">
+              <span class="phone__bar"></span>
+              <span class="phone__blk phone__blk--lg"></span>
+              <span class="phone__blk"></span>
+              <span class="phone__blk phone__blk--sm"></span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -218,7 +224,29 @@ export const sectionsHTML = /* html */ `
               <em>kim.studio/atlas</em>
             </div>
             <div class="browser__view browser__view--atlas">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1100&q=74&sat=-100" alt="ATLAS business website" loading="lazy" decoding="async" />
+              <!-- Coded mini-website (no images/DB) — a real structured layout
+                   so it reads as an actual site, not a photo in a frame. -->
+              <div class="site site--atlas">
+                <nav class="site__nav">
+                  <span class="site__logo">ATLAS</span>
+                  <span class="site__links"><i></i><i></i><i></i></span>
+                  <span class="site__navcta">Enquire</span>
+                </nav>
+                <div class="site__hero">
+                  <div class="site__hero-copy">
+                    <p class="site__eyebrow">Property developer · KL</p>
+                    <h4 class="site__h1">Spaces that grow with you.</h4>
+                    <p class="site__lead">Modern residential and commercial developments across Kuala Lumpur.</p>
+                    <span class="site__btn">View developments</span>
+                  </div>
+                  <div class="site__hero-art"><span></span><span></span><span></span></div>
+                </div>
+                <div class="site__row">
+                  <div class="site__card"></div>
+                  <div class="site__card"></div>
+                  <div class="site__card"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -241,30 +269,44 @@ export const sectionsHTML = /* html */ `
         <ul class="services__list" data-perspective-list>
           <li class="display" data-cursor="BUILD ↗" data-preview="1">
             <span class="services__name">Landing pages</span>
-            <span class="services__demo services__demo--soon">Demo soon</span>
+            <span class="services__agents">
+              <span class="services__price">From RM399</span>
+              <a class="services__demo" href="./demo/fnb/" data-cursor="LIVE">View demo ↗</a>
+            </span>
           </li>
           <li class="display" data-cursor="BUILD ↗" data-preview="2">
             <span class="services__name">Business websites</span>
-            <span class="services__demo services__demo--soon">Demo soon</span>
+            <span class="services__agents">
+              <span class="services__price">From RM799</span>
+              <a class="services__demo" href="./demo/business/" data-cursor="LIVE">View demo ↗</a>
+            </span>
           </li>
           <li class="display" data-cursor="BUILD ↗" data-preview="3">
             <span class="services__name">Portfolio websites</span>
-            <span class="services__demo services__demo--soon">Demo soon</span>
+            <span class="services__agents">
+              <span class="services__price">From RM399</span>
+              <a class="services__demo" href="./demo/portfolio/" data-cursor="LIVE">View demo ↗</a>
+            </span>
           </li>
           <li class="display" data-cursor="BUILD ↗" data-preview="4">
             <span class="services__name">Agent websites</span>
             <span class="services__agents">
-              <a class="services__demo" href="./demo/property/" data-cursor="LIVE">Property agent — View demo ↗</a>
-              <span class="services__demo services__demo--soon">Takaful / insurance — soon</span>
+              <span class="services__price">From RM799</span>
+              <a class="services__demo" href="./demo/property/" data-cursor="LIVE">Property — demo ↗</a>
+              <a class="services__demo" href="./demo/takaful/" data-cursor="LIVE">Takaful — demo ↗</a>
             </span>
           </li>
           <li class="display" data-cursor="BUILD ↗" data-preview="5">
             <span class="services__name">Custom web systems</span>
-            <span class="services__demo services__demo--soon">Demo soon</span>
+            <span class="services__agents">
+              <span class="services__price services__price--quote">From RM1,499+ · custom quote</span>
+              <a class="services__demo" href="./demo/system/" data-cursor="LIVE">View demo ↗</a>
+            </span>
           </li>
         </ul>
         <p class="services__note">
-          Transparent pricing in Ringgit (RM). No hidden fees. Bahasa &amp; English, whatever suits you.
+          Full pricing below · Ringgit (RM) · Bahasa &amp; English, whatever suits you.
+          <a href="#pricing" data-scroll-to="#pricing" data-cursor="VIEW">See packages ↓</a>
         </p>
       </div>
       <!-- Contextual visual that follows the cursor with inertia (desktop). -->
@@ -273,59 +315,281 @@ export const sectionsHTML = /* html */ `
       </div>
     </section>
 
-    <!-- IMAGE PHYSICS GALLERY — Illusion 06 -->
-    <section class="gallery" data-illusion="physics">
-      <div class="wrap gallery__grid">
-        <figure class="gallery__item" data-physics data-cursor="VIEW">
-          <div class="gallery__img gallery__img--1">
-            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=640&q=72&sat=-100" alt="Meridian portfolio website" loading="lazy" decoding="async" />
+    <!-- PRICING — editorial, not SaaS cards -->
+    <section class="pricing" id="pricing" data-illusion="pricing">
+      <div class="wrap">
+        <header class="pricing__head">
+          <p class="eyebrow">Pricing</p>
+          <h2 class="display pricing__title">
+            Pricing built around<br />what you need.
+          </h2>
+        </header>
+
+        <!-- Editorial package spread — each package is a wide row, price as a
+             graphic element. RM799 emphasised by scale + space + a subtle tonal
+             band, not a card/badge. -->
+        <div class="pricing__spread">
+          <!-- 01 STARTER -->
+          <article class="pkg" data-reveal>
+            <div class="pkg__lead">
+              <span class="pkg__no">01</span>
+              <h3 class="display pkg__name">Starter</h3>
+              <p class="pkg__desc">For something simple,<br />focused and effective.</p>
+            </div>
+            <div class="pkg__price">
+              <span class="pkg__from">From</span>
+              <span class="display pkg__amount">RM399</span>
+            </div>
+            <div class="pkg__detail">
+              <ul class="pkg__incl">
+                <li>Landing page</li><li>Mobile responsive</li><li>WhatsApp</li>
+                <li>Contact form</li><li>Google Maps</li><li>Basic SEO</li>
+                <li>2 revisions</li>
+              </ul>
+              <a class="pkg__cta" href="${WA_LINKS.starter}" target="_blank" rel="noopener" data-cursor="CHAT">Start a project ↗</a>
+            </div>
+          </article>
+
+          <!-- 02 BUSINESS — most requested (emphasis via scale + tonal band) -->
+          <article class="pkg pkg--featured" data-reveal>
+            <div class="pkg__lead">
+              <span class="pkg__no">02</span>
+              <h3 class="display pkg__name">Business</h3>
+              <p class="pkg__desc">For businesses ready<br />to look established.</p>
+              <span class="pkg__tag">Most requested</span>
+            </div>
+            <div class="pkg__price">
+              <span class="pkg__from">From</span>
+              <span class="display pkg__amount">RM799</span>
+            </div>
+            <div class="pkg__detail">
+              <ul class="pkg__incl">
+                <li>Up to 5 pages</li><li>Professional design</li><li>WhatsApp</li>
+                <li>Gallery</li><li>FAQ</li><li>SEO</li><li>Training</li>
+                <li>3 revisions</li>
+              </ul>
+              <a class="pkg__cta pkg__cta--wa" href="${WA_LINKS.business}" target="_blank" rel="noopener" data-cursor="CHAT">Start a project ↗</a>
+            </div>
+          </article>
+
+          <!-- 03 PREMIUM -->
+          <article class="pkg" data-reveal>
+            <div class="pkg__lead">
+              <span class="pkg__no">03</span>
+              <h3 class="display pkg__name">Premium</h3>
+              <p class="pkg__desc">For something<br />more ambitious.</p>
+            </div>
+            <div class="pkg__price">
+              <span class="pkg__from">From</span>
+              <span class="display pkg__amount">RM1,499+</span>
+            </div>
+            <div class="pkg__detail">
+              <ul class="pkg__incl">
+                <li>Custom design</li><li>Advanced integrations</li><li>Booking</li>
+                <li>Payment</li><li>Membership</li><li>Admin</li><li>Performance</li>
+              </ul>
+              <a class="pkg__cta" href="${WA_LINKS.premium}" target="_blank" rel="noopener" data-cursor="CHAT">Discuss your project ↗</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="pricing__disclaimer">
+          Final pricing may vary depending on project scope, features and
+          integrations.
+        </p>
+
+        <!-- Custom systems — a separate statement, not a package -->
+        <aside class="pricing__custom" data-reveal>
+          <h3 class="display pricing__custom-title">
+            Need something<br />that doesn't fit<br />in a package?
+          </h3>
+          <div class="pricing__custom-side">
+            <p>Custom systems are quoted around the problem — dashboards, booking
+              engines, member portals, internal tools. We scope it together.</p>
+            <a class="pricing__custom-cta" href="${WA_LINKS.premium}" target="_blank" rel="noopener" data-cursor="CHAT">Discuss a system ↗</a>
           </div>
-          <figcaption>Meridian — Portfolio</figcaption>
-        </figure>
-        <figure class="gallery__item" data-physics data-cursor="VIEW">
-          <div class="gallery__img gallery__img--2">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=640&q=72&sat=-100" alt="Nova web system dashboard" loading="lazy" decoding="async" />
+        </aside>
+
+        <!-- Add-ons — quiet studio rate sheet -->
+        <div class="ratesheet" data-reveal>
+          <p class="eyebrow ratesheet__head"><span>Add-ons</span><span>From</span></p>
+          <ul class="ratesheet__list">
+            <li><span>Payment gateway</span><span>RM200</span></li>
+            <li><span>Booking system</span><span>RM250</span></li>
+            <li><span>Multi-language</span><span>RM150</span></li>
+            <li><span>Extra page</span><span>RM50 / page</span></li>
+            <li><span>Blog module</span><span>RM150</span></li>
+            <li><span>SEO setup</span><span>RM150</span></li>
+            <li><span>Domain + hosting setup</span><span>RM80</span></li>
+            <li><span>Maintenance</span><span>RM50 / month</span></li>
+          </ul>
+        </div>
+
+        <!-- Redesign / Wedding / Consultation — lesser side-services -->
+        <div class="sideservices">
+          <div class="sideservice" data-reveal>
+            <p class="eyebrow">Redesign</p>
+            <p class="sideservice__price display">From RM299</p>
+            <p class="sideservice__copy">Have a domain &amp; hosting but an old site? I'll modernise it without changing your domain.</p>
           </div>
-          <figcaption>Nova — Web system</figcaption>
-        </figure>
-        <figure class="gallery__item" data-physics data-cursor="VIEW">
-          <div class="gallery__img gallery__img--3">
-            <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=640&q=72&sat=-100" alt="Lumen landing page" loading="lazy" decoding="async" />
+          <div class="sideservice" data-reveal data-reveal-delay="80">
+            <p class="eyebrow">Wedding / RSVP</p>
+            <p class="sideservice__price display">From RM149</p>
+            <p class="sideservice__copy">RSVP · photo gallery · countdown · Google Maps · guest wishes.</p>
           </div>
-          <figcaption>Lumen — Landing</figcaption>
-        </figure>
+          <div class="sideservice" data-reveal data-reveal-delay="160">
+            <p class="eyebrow">Consultation</p>
+            <p class="sideservice__copy">Planning &amp; strategy · website audit · redesign advice · branding · SEO &amp; performance · ongoing support.</p>
+            <a class="sideservice__link" href="${WA_LINKS.consult}" target="_blank" rel="noopener" data-cursor="CHAT">Ask on WhatsApp →</a>
+          </div>
+        </div>
+
+        <!-- Pricing CTA -->
+        <div class="pricing__cta-block" data-reveal>
+          <h3 class="display pricing__cta-title">
+            Not sure which one fits your business?
+          </h3>
+          <p class="pricing__cta-sub">Tell me what you need. I'll recommend the right option.</p>
+          <div class="pricing__cta-actions">
+            <a class="btn btn--wa btn--lg" href="${WA_LINKS.consult}" target="_blank" rel="noopener" data-cursor="CHAT">
+              <span class="btn__wa-icon" aria-hidden="true"></span>
+              Chat with Kim →
+            </a>
+            <a class="pricing__cta-link" href="./demo/property/" data-cursor="VIEW">
+              View industry demos ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Campaign strip — real prices stay visible above; this is subordinate -->
+        <aside class="pricing__campaign" data-reveal>
+          <p class="eyebrow pricing__campaign-eyebrow">Portfolio project · 3 selected Malaysian businesses</p>
+          <p class="pricing__campaign-copy">
+            Normal website packages start from RM399. I'm currently selecting 3
+            Malaysian businesses to build for as part of my portfolio expansion.
+            Selected businesses receive the website build at no design or
+            development cost, in exchange for permission to feature the project
+            and an honest testimonial after completion.
+            <span class="pricing__campaign-fine">Third-party costs — domain, hosting, paid plugins, external platform or API fees — are not included where applicable.</span>
+          </p>
+          <a class="pricing__campaign-link" href="#offer" data-scroll-to="#offer" data-cursor="FREE">
+            View details →
+          </a>
+        </aside>
       </div>
     </section>
 
-    <!-- FREE DEMO OFFER — the ad, resolving into the WhatsApp action. -->
+    <!-- SELECTED CONCEPTS — asymmetric editorial composition (Illusion 06) -->
+    <section class="gallery" data-illusion="physics">
+      <div class="wrap gallery__stage">
+        <header class="gallery__head">
+          <p class="eyebrow">02 / Selected concepts</p>
+          <h2 class="display gallery__title">Explorations<br />in progress.</h2>
+        </header>
+
+        <!-- Oversized ghost word crossing behind the visuals -->
+        <span class="display gallery__ghost" aria-hidden="true">STUDIO</span>
+
+        <figure class="gallery__item gallery__item--a" data-physics data-cursor="VIEW" data-reveal>
+          <span class="gallery__no">01</span>
+          <div class="gallery__img">
+            <div class="site site--folio">
+              <nav class="site__nav">
+                <span class="site__logo">Meridian</span>
+                <span class="site__links"><i></i><i></i><i></i></span>
+              </nav>
+              <div class="site__folio-hero">
+                <h4 class="site__display">Selected<br />Work.</h4>
+                <span class="site__index">01 — 08</span>
+              </div>
+              <div class="site__folio-grid"><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <figcaption>
+            <span class="gallery__name">Meridian</span>
+            <span class="gallery__cat">Portfolio · concept</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item gallery__item--b" data-physics data-cursor="VIEW" data-reveal data-reveal-delay="120">
+          <span class="gallery__no">02</span>
+          <div class="gallery__img">
+            <div class="site site--dash">
+              <aside class="site__side"><i></i><i></i><i></i><i></i></aside>
+              <div class="site__dash-main">
+                <div class="site__dash-top"><span class="site__dash-title">Dashboard</span><span class="site__dot"></span></div>
+                <div class="site__stat"><b>RM48.2k</b><small>Revenue</small></div>
+                <div class="site__chart"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="site__rows"><em></em><em></em><em></em></div>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            <span class="gallery__name">Nova</span>
+            <span class="gallery__cat">Web system · concept</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item gallery__item--c" data-physics data-cursor="VIEW" data-reveal data-reveal-delay="200">
+          <span class="gallery__no">03</span>
+          <div class="gallery__img">
+            <div class="site site--landing">
+              <nav class="site__nav site__nav--center">
+                <span class="site__logo">Lumen</span>
+                <span class="site__navcta">Get the app</span>
+              </nav>
+              <div class="site__landing-hero">
+                <span class="site__pill">New · 2026</span>
+                <h4 class="site__display">Light up<br />your day.</h4>
+                <p class="site__lead">A calmer way to plan, focus and finish.</p>
+                <span class="site__btn site__btn--dark">Start free</span>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            <span class="gallery__name">Lumen</span>
+            <span class="gallery__cat">Landing · concept</span>
+          </figcaption>
+        </figure>
+
+        <p class="gallery__note">Concept explorations — real client work replaces these as projects complete.</p>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO PROJECT CAMPAIGN — resolves into the WhatsApp action. -->
     <section class="offer" id="offer" data-illusion="offer">
       <div class="offer__songket" aria-hidden="true"></div>
       <div class="wrap offer__inner">
-        <p class="eyebrow offer__eyebrow">Free demo · Terhad untuk 2026</p>
+        <p class="eyebrow offer__eyebrow">Portfolio project · 3 selected Malaysian businesses</p>
         <h2 class="display offer__title">
-          See your website<br />before you pay a sen.
+          Be one of three<br />I build for free.
         </h2>
         <p class="offer__body">
-          Tell us about your business on WhatsApp and we'll build a real,
-          clickable demo of your new site — completely free. Like it? We finish
-          it. Slots for 2026 are limited.
+          I'm selecting 3 Malaysian businesses to build for as part of my
+          portfolio expansion. If chosen, you get the full website build at no
+          design or development cost — in exchange for permission to feature the
+          project and an honest testimonial once it's done. Normal packages start
+          from RM399, so this is real value, not a giveaway.
         </p>
         <ul class="offer__points">
-          <li>✦ Free clickable demo, zero upfront</li>
-          <li>✦ Built for Malaysian businesses</li>
-          <li>✦ Reply within one working day</li>
+          <li>✦ Website build at no design/development cost</li>
+          <li>✦ In exchange for a testimonial &amp; portfolio feature</li>
+          <li>✦ Third-party costs (domain, hosting, paid services) not included</li>
         </ul>
         <a
           class="btn btn--wa btn--lg"
-          href="${WHATSAPP_LINK}"
+          href="${WA_LINKS.campaign}"
           target="_blank"
           rel="noopener"
           data-cursor="CHAT"
         >
           <span class="btn__wa-icon" aria-hidden="true"></span>
-          Secure my free slot on WhatsApp
+          Apply for the portfolio project
         </a>
-        <p class="offer__wa-num">Or message us directly · 013-6648159</p>
+        <p class="offer__wa-num">
+          Not sure yet? See a free concept first —
+          <a href="${WA_LINKS.concept}" target="_blank" rel="noopener">ask on WhatsApp · 013-6648159</a>
+        </p>
       </div>
     </section>
 
@@ -363,7 +627,7 @@ export const sectionsHTML = /* html */ `
     data-cursor="CHAT"
   >
     <span class="wa-fab__icon" aria-hidden="true"></span>
-    <span class="wa-fab__label">Free demo</span>
+    <span class="wa-fab__label">Chat with Kim</span>
   </a>
 
   <footer class="site-foot wrap">

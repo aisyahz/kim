@@ -14,6 +14,7 @@ import "./styles/sections.css";
 import { sectionsHTML } from "./sections";
 import { initScroll, ScrollTrigger, scrollTo } from "./core/scroll";
 import { initCursor } from "./core/cursor";
+import { initReveal } from "./shared/reveal";
 
 import { mountHeroDepth } from "./illusions/heroDepth";
 import { mountHeroStage } from "./illusions/heroStage";
@@ -84,6 +85,10 @@ function boot(): Cleanup {
 
   const cta = document.querySelector<HTMLElement>('[data-illusion="cta"]');
   if (cta) cleanups.push(mountCtaResolve(cta));
+
+  // Lightweight scroll-reveal for the pricing section (dependency-free,
+  // reduced-motion safe). Does nothing if there are no [data-reveal] elements.
+  cleanups.push(initReveal(app));
 
   // After everything mounts, let ScrollTrigger recompute positions.
   requestAnimationFrame(() => ScrollTrigger.refresh());

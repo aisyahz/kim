@@ -191,84 +191,108 @@
   will-change: transform;
 }
 .hero__laptop-screen {
-  border: 8px solid #1c1a17;
-  border-radius: 14px 14px 0 0;
-  background: #1c1a17;
+  border: 8px solid var(--device-bezel);
+  border-radius: var(--device-radius) var(--device-radius) 0 0;
+  background: var(--device-bezel);
   overflow: hidden;
-  box-shadow: 0 50px 90px -40px rgba(20, 18, 16, 0.5);
+  box-shadow: var(--elev-3);
 }
 .hero__laptop-base {
   height: 14px;
   border-radius: 0 0 12px 12px;
   background: linear-gradient(#c9c2b4, #a8a294);
-  box-shadow: 0 20px 30px -14px rgba(20, 18, 16, 0.5);
+  box-shadow: var(--elev-1);
 }
 
-/* On-screen website mockup */
+/* On-screen mockup — simplified but believable: nav + hero image + overlaid
+   headline + one CTA. Uses rem so it stays legible at every stage size. */
 .mock {
   aspect-ratio: 16 / 10;
   background: var(--paper);
   display: flex;
   flex-direction: column;
-  font-size: 0.5vw;
 }
 .mock__bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.9em 1.2em;
+  padding: 0.7rem 1rem;
   border-bottom: 1px solid var(--line);
 }
 .mock__bar em {
   font-family: var(--font-display);
   font-style: normal;
   font-weight: 700;
-  font-size: 1.6em;
+  font-size: 1rem;
 }
 .mock__nav {
   font-family: var(--font-mono);
-  font-size: 0.9em;
-  letter-spacing: 0.06em;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ink-2);
 }
-.mock__menu { display: none; }
-.mock__body {
+.mock__hero {
+  position: relative;
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1em;
-  padding: 1.4em;
+  overflow: hidden;
+  background: linear-gradient(150deg, #2a2723, #4a4038 55%, #6b5a48);
 }
-.mock__copy { display: flex; flex-direction: column; }
-.mock__copy h3 {
-  font-size: 2.4em;
-  line-height: 1;
-  margin-bottom: 0.4em;
+/* Coded ambient shapes instead of a photo */
+.mock__hero-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
-.mock__copy p {
-  font-size: 1em;
-  color: var(--ink-2);
-  margin-bottom: 1em;
+.mock__hero-art span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(6px);
+  opacity: 0.5;
+}
+.mock__hero-art span:nth-child(1) {
+  width: 46%;
+  aspect-ratio: 1;
+  right: -8%;
+  top: -12%;
+  background: #c9a15f;
+}
+.mock__hero-art span:nth-child(2) {
+  width: 32%;
+  aspect-ratio: 1;
+  left: 10%;
+  bottom: -14%;
+  background: #b9c4c9;
+}
+.mock__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  padding: 1.1rem 1.2rem;
+  background: linear-gradient(transparent 40%, rgba(20, 18, 16, 0.4));
+  color: var(--paper);
+}
+.mock__overlay h3 {
+  font-size: clamp(0.9rem, 1.6vw, 1.5rem);
+  line-height: 1.02;
 }
 .mock__cta {
   align-self: flex-start;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 0.6em 1.2em;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.4rem 0.85rem;
   border-radius: 999px;
-  font-size: 0.95em;
-  margin-bottom: 0.6em;
-}
-.mock__link {
-  font-size: 0.95em;
-  color: var(--ink-2);
-}
-.mock__img {
-  border-radius: 6px;
-  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-/* Phone */
+/* Phone — shares the device language. */
 .hero__phone {
   position: absolute;
   z-index: 4;
@@ -278,26 +302,57 @@
   aspect-ratio: 9 / 19;
   padding: 5px;
   border-radius: 20px;
-  background: #1c1a17;
-  box-shadow: 0 40px 70px -30px rgba(20, 18, 16, 0.6);
+  background: var(--device-bezel);
+  box-shadow: var(--elev-2);
+  overflow: hidden;
   will-change: transform;
 }
-.hero__phone-img {
+/* Coded phone screen (no image) */
+.hero__phone-screen {
+  width: 100%;
+  height: 100%;
   border-radius: 15px;
-}
-.hero__phone-cap {
-  position: absolute;
-  inset: 0;
+  padding: 0.9rem 0.8rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 0.8rem;
-  font-size: 0.85rem;
-  line-height: 1;
+  gap: 0.5rem;
   color: var(--paper);
-  border-radius: 15px;
-  background: linear-gradient(transparent 55%, rgba(20, 18, 16, 0.55));
-  pointer-events: none;
+  background: linear-gradient(165deg, #2a2723, #4a4038 60%, #6b5a48);
+}
+.hero__phone-status {
+  display: flex;
+  gap: 4px;
+}
+.hero__phone-status i {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(244, 241, 234, 0.5);
+}
+.hero__phone-tag {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-top: 0.2rem;
+}
+.hero__phone-cap {
+  margin-top: auto;
+  font-size: 0.85rem;
+  line-height: 1.05;
+}
+.hero__phone-btn {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* Rotating badge */
@@ -385,11 +440,12 @@
   box-shadow: 0 30px 60px -30px rgba(20, 18, 16, 0.35);
   will-change: transform;
 }
-.hero__card-img {
+.hero__card-swatch {
   width: 42px;
   height: 52px;
   border-radius: 6px;
   flex: none;
+  background: linear-gradient(150deg, #2a2723, #6b5a48 70%, #c9a15f);
 }
 .hero__card-text {
   display: flex;
@@ -514,17 +570,19 @@
 
 .frame {
   aspect-ratio: 16 / 10;
-  border-radius: 10px;
+  border-radius: var(--screen-radius);
   overflow: hidden;
-  box-shadow: 0 30px 60px -30px rgba(20, 18, 16, 0.35);
+  box-shadow: var(--elev-2);
   transform-style: preserve-3d;
 }
 .frame__screen {
   width: 100%;
   height: 100%;
 }
-.frame__screen--a {
-  background: linear-gradient(135deg, #d9d3c6, #b9c4c9 60%, #cbb8a6);
+.frame__screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .phone {
@@ -532,14 +590,20 @@
   aspect-ratio: 9 / 19;
   border-radius: 22px;
   padding: 6px;
-  background: var(--ink);
-  box-shadow: 0 24px 48px -20px rgba(20, 18, 16, 0.5);
+  background: var(--device-bezel);
+  box-shadow: var(--elev-2);
 }
 .phone__screen {
   width: 100%;
   height: 100%;
   border-radius: 16px;
-  background: linear-gradient(160deg, #e9c9b0, #c8502d 90%);
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.phone__screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ---------- Work / project zoom ---------- */
@@ -726,37 +790,149 @@
 }
 
 /* ---------- Gallery / image physics ---------- */
+/* Asymmetric editorial composition — selected concepts.
+   A 12-column grid places three visuals at different scales/offsets with an
+   oversized ghost word crossing behind them. */
 .gallery {
-  padding-block: clamp(3rem, 2rem + 5vw, 7rem);
+  padding-block: clamp(4rem, 3rem + 6vw, 9rem);
+  overflow: clip;
 }
-.gallery__grid {
+/* Editorial spread: a 12-col grid with an explicit row structure so the three
+   works read as ONE composition — dominant / supporting / detail — sharing
+   alignment edges rather than floating independently. */
+.gallery__stage {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(1rem, 2vw, 2.5rem);
+  row-gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
 }
+.gallery__head {
+  grid-column: 1 / 8;
+  grid-row: 1;
+  margin-bottom: clamp(0.5rem, 2vw, 1.5rem);
+}
+.gallery__title {
+  font-size: clamp(2rem, 1.3rem + 3vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin-top: 0.6rem;
+}
+
+/* Oversized ghost word behind the visuals — anchored to the right so it reads
+   as a connective backdrop tying the dominant + supporting works together. */
+.gallery__ghost {
+  grid-column: 4 / 13;
+  grid-row: 2 / 4;
+  align-self: start;
+  justify-self: end;
+  margin-top: clamp(1rem, 4vw, 4rem);
+  font-size: clamp(6rem, 24vw, 24rem);
+  line-height: 0.72;
+  color: var(--paper-2);
+  -webkit-text-stroke: 1px var(--line);
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
 .gallery__item {
-  perspective: 1000px;
+  position: relative;
+  z-index: 1;
+}
+.gallery__no {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  margin-bottom: 0.8rem;
 }
 .gallery__img {
-  aspect-ratio: 4 / 5;
-  border-radius: 8px;
-  box-shadow: 0 30px 60px -35px rgba(20, 18, 16, 0.4);
+  overflow: hidden;
+  border-radius: var(--screen-radius);
+  box-shadow: var(--elev-2);
 }
-.gallery__img--1 {
-  background: linear-gradient(160deg, #cdd6d8, #8a9ba0);
+.gallery__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease-out);
 }
-.gallery__img--2 {
-  background: linear-gradient(160deg, #e6d3bd, #c8502d);
-}
-.gallery__img--3 {
-  background: linear-gradient(160deg, #d9d3c6, #9a9484);
+.gallery__item:hover .gallery__img img {
+  transform: scale(1.05);
 }
 .gallery__item figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
   margin-top: 1rem;
+}
+.gallery__name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.gallery__cat {
   font-family: var(--font-mono);
   font-size: var(--step--1);
-  letter-spacing: 0.08em;
-  color: var(--ink-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* --- Magazine spread: DOMINANT (A) · SUPPORTING (C) · DETAIL (B) --- */
+
+/* A — Meridian: the dominant anchor. Large, left, tall. */
+.gallery__item--a {
+  grid-column: 1 / 8;
+  grid-row: 2 / 4;
+  z-index: 2;
+}
+.gallery__item--a .gallery__img {
+  aspect-ratio: 4 / 5;
+}
+.gallery__item--a .gallery__name {
+  font-size: clamp(1.6rem, 1.1rem + 1.5vw, 2.4rem);
+}
+
+/* C — Lumen: the supporting piece. Medium, right, aligned to A's top,
+   offset down slightly for editorial tension; sits over the ghost word. */
+.gallery__item--c {
+  grid-column: 8 / 13;
+  grid-row: 2;
+  margin-top: clamp(2.5rem, 7vw, 6rem);
+  z-index: 2;
+}
+.gallery__item--c .gallery__img {
+  aspect-ratio: 4 / 3;
+}
+
+/* B — Nova (dark dashboard): the small DETAIL. Deliberately small to rebalance
+   its heavy dark weight; tucked lower-right, its left edge aligned to C. */
+.gallery__item--b {
+  grid-column: 9 / 13;
+  grid-row: 3;
+  align-self: start;
+  z-index: 2;
+}
+.gallery__item--b .gallery__img {
+  aspect-ratio: 16 / 11;
+}
+.gallery__item--b .gallery__name {
+  font-size: 1.15rem;
+}
+
+.gallery__note {
+  grid-column: 1 / 8;
+  grid-row: 4;
+  align-self: end;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
 }
 
 /* ---------- CTA ---------- */
@@ -1066,15 +1242,35 @@ a.services__demo:hover {
 .services__demo--soon {
   color: var(--ink-3);
 }
+/* Price label on each service row */
+.services__price {
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.3rem + 0.7vw, 0.95rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.services__price--quote {
+  color: var(--accent);
+}
 
-/* Services note (Malaysian pricing cue) */
+/* Services note (now links to full pricing below) */
 .services__note {
   margin-top: 2.2rem;
-  max-width: 48ch;
+  max-width: 60ch;
   font-family: var(--font-mono);
   font-size: var(--step--1);
   letter-spacing: 0.04em;
   color: var(--ink-3);
+}
+.services__note a {
+  color: var(--accent);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  margin-left: 0.4rem;
+  white-space: nowrap;
 }
 
 /* ============================================================
@@ -1198,9 +1394,46 @@ a.services__demo:hover {
     font-size: clamp(1.8rem, 10vw, 3rem);
   }
 
-  /* Gallery single column */
-  .gallery__grid {
-    grid-template-columns: 1fr;
+  /* Gallery: staggered editorial sequence keeping the dominant / supporting /
+     detail hierarchy. Order: A (dominant) -> C (supporting) -> B (small detail). */
+  .gallery__stage {
+    display: flex;
+    flex-direction: column;
+  }
+  .gallery__head {
+    margin-bottom: 1.5rem;
+  }
+  .gallery__ghost {
+    display: none; /* the oversized word doesn't compose at 390px */
+  }
+  .gallery__note { order: 5; margin-top: 1.5rem; }
+  .gallery__item {
+    margin-block: clamp(1.2rem, 6vw, 2.4rem);
+  }
+  .gallery__item--a {
+    order: 1;
+    width: 92%;
+    margin-right: auto;
+  }
+  .gallery__item--a .gallery__img {
+    aspect-ratio: 4 / 5;
+  }
+  .gallery__item--c {
+    order: 2;
+    width: 74%;
+    margin-left: auto;
+  }
+  .gallery__item--c .gallery__img {
+    aspect-ratio: 4 / 3;
+  }
+  /* Small detail stays small on mobile too. */
+  .gallery__item--b {
+    order: 3;
+    width: 58%;
+    margin-right: auto;
+  }
+  .gallery__item--b .gallery__img {
+    aspect-ratio: 16 / 11;
   }
 
   /* CTA + offer buttons full width for thumbs */
@@ -1230,5 +1463,1097 @@ a.services__demo:hover {
 @media (hover: none), (pointer: coarse) {
   .services__preview {
     display: none;
+  }
+}
+
+/* ============================================================
+   SCROLL REVEAL (homepage — matches shared/reveal.ts hooks)
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  will-change: opacity, transform;
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   PRICING — editorial, not SaaS cards.
+   Reuses the ivory palette, serif display, mono labels, thin
+   architectural lines and generous whitespace of the KIM system.
+   ============================================================ */
+.pricing {
+  position: relative;
+  padding-block: clamp(3.5rem, 2.5rem + 7vw, 9rem);
+}
+.pricing__head {
+  margin-bottom: clamp(2.5rem, 4vw, 4.5rem);
+}
+.pricing__title {
+  font-size: clamp(2.2rem, 1.2rem + 4.5vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin-top: 0.8rem;
+}
+
+/* --- Editorial package spread --- */
+.pricing__spread {
+  border-top: 1px solid var(--ink);
+}
+/* Each package is a wide 3-column row: lead / price / detail.
+   `align-items: center` ties the oversized price to the name so the row reads
+   as one connected unit rather than three columns floating at the top with
+   accidental space beneath the shorter ones. Padding is a deliberate,
+   consistent rhythm — generous but intentional. */
+.pkg {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr 1.1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  padding: clamp(1.8rem, 1.2rem + 2vw, 3rem) 0;
+  border-bottom: 1px solid var(--line);
+}
+/* Featured: a subtle tonal band + a touch more air (still intentional). */
+.pkg--featured {
+  position: relative;
+  padding-block: clamp(2.4rem, 1.6rem + 2.5vw, 3.8rem);
+}
+.pkg--featured::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  background: var(--paper-2);
+  z-index: -1;
+}
+.pkg__lead {
+  position: relative;
+}
+.pkg__no {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+}
+.pkg__name {
+  font-size: clamp(2rem, 1.2rem + 3vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin-top: 0.6rem;
+}
+.pkg--featured .pkg__name {
+  font-size: clamp(2.6rem, 1.4rem + 4vw, 5.5rem);
+}
+.pkg__desc {
+  margin-top: 0.9rem;
+  color: var(--ink-2);
+  font-size: var(--step-0);
+  line-height: 1.35;
+}
+.pkg__tag {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+/* Price as a graphic element */
+.pkg__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+.pkg__from {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.pkg__amount {
+  font-weight: 700;
+  font-size: clamp(2.6rem, 1.5rem + 5vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin-top: 0.3rem;
+}
+.pkg--featured .pkg__amount {
+  font-size: clamp(3.4rem, 2rem + 7vw, 8.5rem);
+}
+.pkg__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+.pkg__incl {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+.pkg__incl li {
+  position: relative;
+  padding-left: 0.9rem;
+}
+.pkg__incl li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+.pkg__cta {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 3px;
+  transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+.pkg__cta:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.pkg__cta--wa:hover {
+  color: var(--wa-ink);
+  border-color: var(--wa-ink);
+}
+
+.pricing__disclaimer {
+  margin-top: 1.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+/* --- Custom systems statement --- */
+.pricing__custom {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+  margin-top: clamp(3rem, 6vw, 7rem);
+  padding-top: clamp(2.5rem, 4vw, 4rem);
+  border-top: 1px solid var(--line);
+}
+.pricing__custom-title {
+  font-size: clamp(2.2rem, 1.4rem + 4vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.pricing__custom-side p {
+  color: var(--ink-2);
+  font-size: var(--step-0);
+  line-height: 1.5;
+}
+.pricing__custom-cta {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 3px;
+}
+.pricing__custom-cta:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* --- Add-ons rate sheet (quiet studio rate card) --- */
+.ratesheet {
+  margin-top: clamp(3rem, 5vw, 6rem);
+  max-width: 640px;
+}
+.ratesheet__head {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--ink);
+}
+.ratesheet__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ratesheet__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 1rem;
+  color: var(--ink-2);
+}
+.ratesheet__list li span:last-child {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* --- Side-services (lesser weight than packages) --- */
+.sideservices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: clamp(3rem, 5vw, 6rem);
+  padding-top: clamp(2rem, 3vw, 3rem);
+  border-top: 1px solid var(--line);
+}
+.sideservice__price {
+  font-size: 1.8rem;
+  margin: 0.5rem 0 0.6rem;
+}
+.sideservice__copy {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin-top: 0.5rem;
+}
+.sideservice__link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+/* --- Pricing CTA block --- */
+.pricing__cta-block {
+  margin-top: clamp(3rem, 5vw, 6rem);
+  padding-top: clamp(2.5rem, 4vw, 4rem);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.pricing__cta-title {
+  font-size: clamp(1.8rem, 1.2rem + 3vw, 3.6rem);
+  line-height: 1;
+  max-width: 20ch;
+  margin-inline: auto;
+}
+.pricing__cta-sub {
+  margin: 1rem auto 0;
+  color: var(--ink-2);
+  font-size: var(--step-0);
+}
+.pricing__cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+.pricing__cta-link {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+/* --- Campaign strip (subordinate to real prices) --- */
+.pricing__campaign {
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+  padding: clamp(1.6rem, 1rem + 2vw, 2.6rem);
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  display: grid;
+  gap: 1rem;
+}
+.pricing__campaign-eyebrow {
+  color: var(--accent);
+}
+.pricing__campaign-copy {
+  max-width: 70ch;
+  color: var(--ink-2);
+  font-size: var(--step-0);
+  line-height: 1.55;
+}
+.pricing__campaign-fine {
+  display: block;
+  margin-top: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--ink-3);
+}
+.pricing__campaign-link {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  justify-self: start;
+}
+
+/* ---- Pricing responsive ---- */
+@media (max-width: 900px) {
+  /* Package rows collapse: lead + price on one line, detail below. */
+  .pkg {
+    grid-template-columns: 1fr auto;
+    row-gap: 1.4rem;
+  }
+  .pkg__detail {
+    grid-column: 1 / -1;
+  }
+  .pricing__custom {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .sideservices {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Gallery on tablet: keep the dominant/supporting/detail idea but tighten
+     the grid so it composes cleanly in the narrower width. */
+  .gallery__head {
+    grid-column: 1 / 13;
+  }
+  .gallery__ghost {
+    font-size: clamp(6rem, 30vw, 16rem);
+  }
+  .gallery__item--a {
+    grid-column: 1 / 8;
+    grid-row: 2 / 4;
+  }
+  .gallery__item--c {
+    grid-column: 8 / 13;
+    grid-row: 2;
+    margin-top: 2.5rem;
+  }
+  .gallery__item--b {
+    grid-column: 8 / 12;
+    grid-row: 3;
+  }
+  .gallery__note {
+    grid-column: 1 / 8;
+  }
+}
+
+@media (max-width: 600px) {
+  /* 390px: price becomes a large typographic moment under the name. */
+  .pkg {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+  .pkg__price {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .pkg__amount {
+    font-size: 3.4rem;
+  }
+  .pkg--featured .pkg__amount {
+    font-size: 4.2rem;
+  }
+  .pricing__cta-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .pricing__cta-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .pricing__campaign-link {
+    justify-self: stretch;
+    text-align: center;
+  }
+}
+
+/* ============================================================
+   CODED MINI-WEBSITES (no images / no DB)
+   A tiny but real website layout system used inside device frames
+   (ATLAS browser, intro frame, gallery concepts). Because they are
+   structured like real sites, they read as genuine work.
+   ============================================================ */
+.site {
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  container-type: inline-size;
+}
+
+/* Shared nav */
+.site__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5% 6%;
+  border-bottom: 1px solid var(--line);
+}
+.site__nav--center {
+  justify-content: space-between;
+}
+.site__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 5cqw;
+  letter-spacing: -0.01em;
+}
+.site__links {
+  display: flex;
+  gap: 3cqw;
+}
+.site__links i {
+  width: 6cqw;
+  height: 1.4cqw;
+  border-radius: 2px;
+  background: var(--line);
+}
+.site__navcta {
+  font-family: var(--font-mono);
+  font-size: 2.6cqw;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1.4cqw 3cqw;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Generic hero (atlas / intro) */
+.site__hero {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4cqw;
+  padding: 6%;
+  align-items: center;
+}
+.site__hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4cqw;
+}
+.site__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 2.4cqw;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.site__h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9cqw;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.site__lead {
+  font-size: 3cqw;
+  line-height: 1.4;
+  color: var(--ink-2);
+  max-width: 32ch;
+}
+.site__btn {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 2.6cqw;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2cqw 4cqw;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+}
+.site__btn--dark {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.site__hero-art {
+  position: relative;
+  align-self: stretch;
+  border-radius: 3cqw;
+  overflow: hidden;
+  background: linear-gradient(150deg, #cdd6d8, #8a9ba0);
+}
+.site__hero-art span {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  filter: blur(3px);
+}
+.site__hero-art span:nth-child(1) {
+  width: 60%; aspect-ratio: 1; right: -10%; top: -10%; background: #e6d3bd;
+}
+.site__hero-art span:nth-child(2) {
+  width: 44%; aspect-ratio: 1; left: -8%; bottom: -12%; background: #c8a15f;
+}
+.site__hero-art span:nth-child(3) {
+  width: 30%; aspect-ratio: 1; right: 20%; bottom: 8%; background: #d8c3ad;
+}
+.site__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3cqw;
+  padding: 0 6% 6%;
+}
+.site__card {
+  aspect-ratio: 4 / 3;
+  border-radius: 2cqw;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+
+/* ATLAS variant — warmer developer palette */
+.site--atlas .site__hero-art {
+  background: linear-gradient(150deg, #e7e1d4, #b9c4c9 55%, #d8c3ad);
+}
+
+/* Intro variant — single hero, no card row */
+.site--intro .site__hero {
+  grid-template-columns: 1.1fr 0.9fr;
+}
+.site--intro .site__hero-art span:nth-child(1) { background: #b9c4c9; }
+.site--intro .site__hero-art span:nth-child(2) { background: #cbb8a6; }
+
+/* Portfolio variant */
+.site--folio {
+  background: #f6f3ec;
+}
+.site__folio-hero {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 6%;
+}
+.site__display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14cqw;
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+}
+.site__index {
+  font-family: var(--font-mono);
+  font-size: 2.6cqw;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.site__folio-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2cqw;
+  padding: 0 6% 6%;
+}
+.site__folio-grid span {
+  aspect-ratio: 3 / 4;
+  border-radius: 1.4cqw;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+
+/* Dashboard / web-system variant (dark, credible admin UI) */
+.site--dash {
+  flex-direction: row;
+  background: #17150f;
+  color: #ece7dc;
+}
+.site__side {
+  width: 18%;
+  padding: 6% 4%;
+  display: flex;
+  flex-direction: column;
+  gap: 5cqw;
+  background: #221f18;
+  border-right: 1px solid rgba(236, 231, 220, 0.08);
+}
+.site__side i {
+  height: 2.2cqw;
+  border-radius: 2px;
+  background: rgba(236, 231, 220, 0.25);
+}
+.site__side i:first-child {
+  background: var(--accent);
+}
+.site__dash-main {
+  flex: 1;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 4cqw;
+}
+.site__dash-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site__dash-title {
+  font-family: var(--font-mono);
+  font-size: 3cqw;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(236, 231, 220, 0.7);
+}
+.site__dot {
+  width: 4cqw;
+  height: 4cqw;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.site__stat {
+  display: flex;
+  flex-direction: column;
+}
+.site__stat b {
+  font-family: var(--font-display);
+  font-size: 11cqw;
+  line-height: 1;
+}
+.site__stat small {
+  font-family: var(--font-mono);
+  font-size: 2.6cqw;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(236, 231, 220, 0.55);
+  margin-top: 1cqw;
+}
+.site__chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 2cqw;
+  height: 26%;
+}
+.site__chart span {
+  flex: 1;
+  border-radius: 1cqw 1cqw 0 0;
+  background: rgba(236, 231, 220, 0.25);
+}
+.site__chart span:nth-child(1) { height: 40%; }
+.site__chart span:nth-child(2) { height: 65%; }
+.site__chart span:nth-child(3) { height: 50%; }
+.site__chart span:nth-child(4) { height: 85%; background: var(--accent); }
+.site__chart span:nth-child(5) { height: 60%; }
+.site__chart span:nth-child(6) { height: 75%; }
+.site__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2cqw;
+}
+.site__rows em {
+  height: 3cqw;
+  border-radius: 2px;
+  background: rgba(236, 231, 220, 0.12);
+}
+.site__rows em:nth-child(2) { width: 80%; }
+.site__rows em:nth-child(3) { width: 60%; }
+
+/* Landing variant (centered, app-style) */
+.site--landing {
+  text-align: center;
+}
+.site__landing-hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3cqw;
+  padding: 6%;
+  background: radial-gradient(120% 90% at 50% 0%, #efe9dd, #e0d8c8);
+}
+.site__pill {
+  font-family: var(--font-mono);
+  font-size: 2.4cqw;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1.4cqw 3cqw;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+}
+.site--landing .site__display {
+  font-size: 13cqw;
+}
+.site--landing .site__lead {
+  font-size: 3cqw;
+  color: var(--ink-2);
+}
+
+/* Intro phone — coded content blocks (no image) */
+.phone__bar {
+  display: block;
+  width: 40%;
+  height: 4%;
+  border-radius: 4px;
+  background: var(--line);
+  margin: 12% 0 8% 12%;
+}
+.phone__blk {
+  display: block;
+  width: 76%;
+  height: 10%;
+  border-radius: 6px;
+  margin: 0 auto 6%;
+  background: var(--paper-2);
+}
+.phone__blk--lg {
+  height: 34%;
+  background: linear-gradient(150deg, #d9d3c6, #b9c4c9);
+}
+.phone__blk--sm { width: 50%; margin-right: 24%; margin-left: auto; }
+
+/* ============================================================
+   MOBILE REFINEMENTS (batch 1 areas) — most visitors are on phones.
+   Container queries make the coded mini-sites adapt to their FRAME width,
+   so they stay legible whether the frame is large (desktop) or small (mobile).
+   ============================================================ */
+
+/* Coded mini-sites: when the frame itself is narrow, simplify to one column
+   and enlarge text so it never becomes unreadable scribble. */
+@container (max-width: 360px) {
+  .site__hero {
+    grid-template-columns: 1fr;
+    gap: 3cqw;
+  }
+  .site__hero-art {
+    display: none; /* drop the decorative block; keep the readable copy */
+  }
+  .site__h1 {
+    font-size: 11cqw;
+  }
+  .site__lead {
+    font-size: 3.6cqw;
+  }
+  .site__row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .site__folio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .site--dash .site__side {
+    width: 22%;
+  }
+  .site__stat b {
+    font-size: 13cqw;
+  }
+}
+
+/* ============================================================
+   PHONE (<= 680px) — refined compositions for the batch-1 sections
+   ============================================================ */
+@media (max-width: 680px) {
+  /* ---- Global overflow safety ---- */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ---- HERO STAGE: recompose as a clean, deliberate mobile scene ----
+     Instead of a cramped pile of absolutely-positioned floats, give the stage
+     more height and place the laptop as the hero object with the phone and
+     card as supporting accents. The glass K becomes a large backdrop. */
+  .hero__stage {
+    height: 78vw;
+    min-height: 320px;
+    max-height: 420px;
+  }
+  .hero__glassk {
+    font-size: 52vw;
+    top: -6%;
+    right: -2%;
+    opacity: 0.7;
+  }
+  .hero__laptop {
+    width: 84%;
+    left: 2%;
+    bottom: 8%;
+  }
+  .hero__phone {
+    width: 78px;
+    right: 0;
+    bottom: 4%;
+  }
+  /* Idea card is the first thing to crowd a small stage — hide it. */
+  .hero__card {
+    display: none;
+  }
+  /* Keep the coded laptop legible: its inner text is cqw-based, so the
+     container query above already handles it. */
+
+  /* ---- SERVICES rows: name over price, don't wrap awkwardly ---- */
+  .services__list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    padding-block: 0.35em;
+  }
+  .services__agents {
+    align-items: flex-start;
+  }
+  .services__price,
+  .services__demo {
+    font-size: 0.72rem;
+    white-space: normal;
+  }
+  .services__note {
+    font-size: 0.72rem;
+  }
+  .services__note a {
+    display: inline-block;
+    margin-left: 0;
+    margin-top: 0.4rem;
+  }
+
+  /* ---- GALLERY: coded concept sites keep a sensible frame ratio ---- */
+  .gallery__item--a .gallery__img,
+  .gallery__item--c .gallery__img {
+    aspect-ratio: 16 / 11;
+  }
+  .gallery__item--b .gallery__img {
+    aspect-ratio: 4 / 5;
+  }
+  .gallery__name {
+    font-size: 1.25rem;
+  }
+
+  /* ---- PRICING: single column, price as a large typographic moment ---- */
+  .pricing__spread {
+    border-top: 1px solid var(--ink);
+  }
+  /* Single column with an intentional hierarchy:
+     PACKAGE (no + name) -> PRICE -> POSITIONING -> DETAILS -> CTA.
+     `display: contents` lifts the lead's children into the flex flow so PRICE
+     can sit above the positioning line via `order`. */
+  .pkg {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-block: 2rem;
+  }
+  .pkg__lead {
+    display: contents;
+  }
+  .pkg__no { order: 1; }
+  .pkg__name { order: 2; margin-top: 0.2rem; }
+  .pkg__price { order: 3; align-items: flex-start; text-align: left; margin-top: 0.4rem; }
+  .pkg__desc { order: 4; margin-top: 0.4rem; }
+  .pkg__tag { order: 5; margin-top: 0.2rem; }
+  .pkg__detail { order: 6; margin-top: 1rem; }
+  .pkg__amount {
+    font-size: 3.6rem;
+  }
+  .pkg--featured .pkg__amount {
+    font-size: 4.4rem;
+  }
+  /* Featured full-bleed band: clamp its reach so it can't create h-scroll. */
+  .pkg--featured::before {
+    left: calc(var(--gutter) * -1);
+    right: calc(var(--gutter) * -1);
+  }
+  .pkg__incl {
+    gap: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+  .pkg__cta {
+    margin-top: 0.4rem;
+    padding-block: 0.5rem; /* larger tap target */
+  }
+
+  .pricing__custom {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .pricing__custom-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .ratesheet__list li {
+    font-size: 0.95rem;
+  }
+
+  .sideservices {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  /* Pricing CTA + campaign readable and thumb-friendly */
+  .pricing__cta-title {
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+  }
+  .pricing__cta-link {
+    padding-block: 0.4rem;
+  }
+
+  /* ---- INTRO depth: the coded site frame + phone shouldn't collide ---- */
+  .intro__device {
+    transform: translate(2%, 18%);
+  }
+
+  /* ---- Ensure primary CTAs meet ~44px tap height ---- */
+  .btn--lg {
+    padding-block: 0.95em;
+  }
+}
+
+/* Very small phones (<= 380px): tighten the hero type + stage a touch more. */
+@media (max-width: 380px) {
+  .hero__title {
+    font-size: clamp(2.4rem, 1rem + 13vw, 3.6rem);
+  }
+  .hero__stage {
+    height: 82vw;
+  }
+  .pkg__amount {
+    font-size: 3.2rem;
+  }
+}
+
+/* ============================================================
+   MOBILE FIXES from on-device review (390px screenshots)
+   Targets: intro depth collision, ATLAS empty scroll + clipped copy,
+   promo/nav clearance. Desktop untouched.
+   ============================================================ */
+@media (max-width: 680px) {
+  /* ---- 1. INTRO DEPTH: stop layering; clean vertical stack ----
+     The BUILD / image / DIFFERENT / phone layers collide on a narrow screen.
+     On mobile, flatten the grid into a readable sequence. */
+  .intro {
+    min-height: auto;
+    padding-block: clamp(3rem, 10vw, 5rem);
+    perspective: none;
+  }
+  .intro__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    min-height: auto;
+    transform-style: flat;
+  }
+  /* Neutralise the desktop Z/parallax transforms + blend so nothing overlaps. */
+  .intro__bg,
+  .intro__media,
+  .intro__fg,
+  .intro__device {
+    position: static;
+    grid-area: auto;
+    transform: none !important;
+    translate: none !important;
+    margin: 0;
+    mix-blend-mode: normal;
+    z-index: auto;
+  }
+  .intro__bg {
+    font-size: clamp(2.6rem, 15vw, 5rem);
+    color: var(--paper-2);
+  }
+  .intro__fg {
+    font-size: clamp(2.6rem, 15vw, 5rem);
+    color: var(--ink);
+    align-self: flex-end;
+    text-align: right;
+  }
+  .intro__media {
+    width: 100%;
+    align-self: stretch;
+  }
+  /* The little phone is redundant beside the framed site on mobile — hide it. */
+  .intro__device {
+    display: none;
+  }
+
+  /* ---- 2. WORK / ATLAS: kill the empty vertical gaps ----
+     The pinned browser was centered in a 100svh box with label pinned top and
+     meta pinned bottom -> big blank areas. Reflow to a compact centered stack. */
+  .work__pin {
+    min-height: auto;
+    padding: calc(var(--promobar-h) + 5rem) var(--gutter) 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.2rem;
+  }
+  .work__label {
+    position: static;
+    padding: 0;
+  }
+  .work__preview {
+    width: 100%;
+  }
+  /* Ghost/fore giant words don't compose over a small centered browser. */
+  .work__ghost,
+  .work__fore {
+    display: none;
+  }
+  .work__meta {
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+  }
+  /* Give the ATLAS coded site enough height so its copy isn't clipped. */
+  .browser {
+    aspect-ratio: 3 / 4;
+  }
+
+  /* ---- 3. Promo bar / nav clearance ----
+     Ensure the fixed nav clears the promo bar and content clears both. */
+  .promobar {
+    height: var(--promobar-h);
+    line-height: var(--promobar-h);
+  }
+  .site-nav {
+    top: var(--promobar-h);
+    background: rgba(244, 241, 234, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* On touch devices the ATLAS coded site is static (no hover) — make sure its
+   inner site fills the taller mobile browser frame cleanly. */
+@media (max-width: 680px) {
+  .browser__view {
+    height: calc(100% - 34px);
+  }
+  .site--atlas .site__row {
+    display: none; /* drop the card row; keep nav + hero for a clean small site */
   }
 }

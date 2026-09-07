@@ -38,6 +38,16 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
 
+  /* Unified device / mockup language — one "photoshoot" across the site.
+     Every framed screen (hero laptop, hero phone, intro phone, browser,
+     gallery) shares this bezel, radius and elevation vocabulary. */
+  --device-bezel: #1c1a17;
+  --device-radius: 14px;
+  --screen-radius: 8px;
+  --elev-1: 0 20px 40px -24px rgba(20, 18, 16, 0.35);
+  --elev-2: 0 40px 70px -34px rgba(20, 18, 16, 0.45);
+  --elev-3: 0 60px 100px -44px rgba(20, 18, 16, 0.5);
+
   --z-canvas: 5;
   --z-content: 10;
   --z-cursor: 9999;

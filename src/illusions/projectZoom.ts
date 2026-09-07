@@ -28,10 +28,14 @@ export function mountProjectZoom(root: HTMLElement): () => void {
   const label = root.querySelector<HTMLElement>(".work__label");
   if (!pin || !target || !browser || !meta) return () => {};
 
-  if (!motion.allowScrollFx) {
-    // Static fallback: show the resolved composition, no motion.
+  // On touch / small screens the pinned scroll-zoom creates a long, empty
+  // scrub that reads as dead space on a phone. Skip the pin entirely and show
+  // the clean static composition the mobile CSS lays out. Also the fallback
+  // when reduced motion is requested.
+  const smallScreen =
+    typeof window !== "undefined" && window.matchMedia("(max-width: 680px)").matches;
+  if (!motion.allowScrollFx || motion.touch || smallScreen) {
     gsap.set(meta, { opacity: 1 });
-    gsap.set([ghost, fore], { opacity: 0.6 });
     return () => {};
   }
 

@@ -1,0 +1,95 @@
+/* Portfolio demo — Iman Yusof. Experimental, high-contrast, oversized type.
+   Own identity: near-black + off-white + acid lime, Space Grotesk + Instrument
+   Serif italic accents. Deliberately unlike KIM's warm ivory. .pf */
+.pf {
+  --bg: #0f0f0f;
+  --fg: #f2f0ea;
+  --dim: #8a8880;
+  --lime: #d6fb50;
+  --line: rgba(242, 240, 234, 0.16);
+  --sans: "Space Grotesk", system-ui, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --gut: clamp(1.25rem, 0.8rem + 3vw, 5rem);
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+}
+.pf ::selection { background: var(--lime); color: #0f0f0f; }
+
+.pf-num { font-size: 0.8rem; color: var(--dim); letter-spacing: 0.05em; }
+.pf-num--light { color: var(--dim); }
+.pf-h2 { font-size: clamp(1.6rem, 1rem + 3.4vw, 3.4rem); line-height: 1.12; font-weight: 500; letter-spacing: -0.02em; margin-top: 1.5rem; max-width: 20ch; }
+.pf-h2 em, .pf-block-title em { font-family: var(--serif); font-style: italic; color: var(--lime); }
+.pf-block-title { font-size: clamp(1.6rem, 1rem + 3vw, 3rem); font-weight: 500; letter-spacing: -0.02em; margin: 1.2rem 0 2rem; }
+
+/* Nav */
+.pf-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem var(--gut); mix-blend-mode: difference; }
+.pf-nav__brand { font-weight: 700; letter-spacing: 0.02em; font-size: 1rem; color: var(--fg); }
+.pf-nav__brand span { color: var(--lime); }
+.pf-nav__cta { font-size: 0.85rem; color: var(--fg); border-bottom: 1px solid var(--lime); padding-bottom: 2px; }
+
+/* Hero */
+.pf-hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 7rem var(--gut) 2rem; }
+.pf-hero__role { font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-bottom: 1.5rem; }
+.pf-hero__title { font-size: clamp(3.5rem, 1rem + 18vw, 15rem); line-height: 0.86; font-weight: 500; letter-spacing: -0.04em; display: flex; flex-wrap: wrap; gap: 0 0.3em; }
+.pf-hero__title .pf-i { font-family: var(--serif); font-style: italic; color: var(--lime); }
+.pf-hero__foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-top: 3rem; flex-wrap: wrap; }
+.pf-hero__foot p { max-width: 34ch; color: var(--dim); }
+.pf-hero__scroll { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+
+/* Marquee */
+.pf-marq { border-block: 1px solid var(--line); overflow: hidden; white-space: nowrap; padding: 1.1rem 0; }
+.pf-marq__row { display: inline-flex; animation: pf-scroll 24s linear infinite; }
+.pf-marq__row span { font-family: var(--serif); font-style: italic; font-size: clamp(1.6rem, 5vw, 3rem); padding-right: 0.4em; }
+@keyframes pf-scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .pf-marq__row { animation: none; } }
+
+/* Sections */
+.pf-sec { padding: clamp(4rem, 8vw, 9rem) var(--gut); max-width: 1200px; margin-inline: auto; }
+.pf-sec--dark { background: #161616; max-width: none; }
+.pf-sec--dark > * { max-width: 1200px; margin-inline: auto; }
+.pf-sec--tint { background: var(--lime); color: #0f0f0f; max-width: none; }
+.pf-sec--tint > * { max-width: 1200px; margin-inline: auto; }
+.pf-sec--tint .pf-num { color: rgba(15, 15, 15, 0.5); }
+
+/* Work list */
+.pf-work { padding: clamp(3rem, 6vw, 7rem) var(--gut); max-width: 1200px; margin-inline: auto; }
+.pf-work__head { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2rem; }
+.pf-work__head h3 { font-size: clamp(1.4rem, 1rem + 2vw, 2.4rem); font-weight: 500; }
+.pf-item { display: flex; align-items: baseline; gap: 1.5rem; padding: clamp(1.2rem, 3vw, 2.2rem) 0; border-top: 1px solid var(--line); transition: padding-left 0.4s cubic-bezier(0.22,1,0.36,1), color 0.3s ease; }
+.pf-item:last-child { border-bottom: 1px solid var(--line); }
+.pf-item:hover { padding-left: 1.5rem; color: var(--lime); }
+.pf-item__name { font-size: clamp(2rem, 1rem + 6vw, 5rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
+.pf-item__meta { margin-left: auto; font-size: 0.85rem; color: var(--dim); }
+.pf-item__arrow { font-size: 1.4rem; }
+
+/* Experience */
+.pf-exp { list-style: none; padding: 0; margin: 0; }
+.pf-exp__row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 1rem; padding: 1.2rem 0; border-top: 1px solid var(--line); align-items: baseline; }
+.pf-exp__row b { font-size: 1.3rem; font-weight: 500; }
+.pf-exp__row span { color: var(--dim); }
+.pf-exp__row em { font-style: normal; color: var(--dim); font-size: 0.9rem; }
+
+/* Capabilities */
+.pf-caps { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.pf-caps span { border: 1px solid var(--line); border-radius: 999px; padding: 0.5em 1.1em; font-size: 0.95rem; }
+
+/* Quote */
+.pf-quote { font-family: var(--serif); font-size: clamp(1.6rem, 1rem + 3.5vw, 3.4rem); line-height: 1.2; font-style: italic; max-width: 22ch; }
+.pf-quote__who { margin-top: 1.5rem; font-weight: 500; }
+
+/* Contact */
+.pf-contact { padding: clamp(4rem, 10vw, 10rem) var(--gut); text-align: center; }
+.pf-contact__title { font-size: clamp(3rem, 1rem + 16vw, 12rem); line-height: 0.85; font-weight: 500; letter-spacing: -0.04em; margin: 1.5rem 0; }
+.pf-contact__title em { font-family: var(--serif); font-style: italic; color: var(--lime); }
+.pf-contact__cta { display: inline-block; font-size: 1.1rem; border-bottom: 2px solid var(--lime); padding-bottom: 3px; }
+.pf-contact__mail { margin-top: 1.5rem; color: var(--dim); font-size: 0.9rem; }
+
+.pf-foot { display: flex; justify-content: space-between; padding: 2rem var(--gut); border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--dim); }
+
+@media (max-width: 600px) {
+  .pf-exp__row { grid-template-columns: 1fr; gap: 0.2rem; }
+  .pf-hero__title { gap: 0 0.2em; }
+  .pf-foot { flex-direction: column; gap: 0.4rem; }
+}

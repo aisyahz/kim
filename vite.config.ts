@@ -17,6 +17,11 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         "demo-property": resolve(__dirname, "demo/property/index.html"),
+        "demo-takaful": resolve(__dirname, "demo/takaful/index.html"),
+        "demo-business": resolve(__dirname, "demo/business/index.html"),
+        "demo-portfolio": resolve(__dirname, "demo/portfolio/index.html"),
+        "demo-fnb": resolve(__dirname, "demo/fnb/index.html"),
+        "demo-system": resolve(__dirname, "demo/system/index.html"),
       },
       output: {
         // Only the main site uses gsap/lenis; demos avoid them. Splitting here
